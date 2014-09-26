@@ -159,7 +159,7 @@ class vendocrat_Server_Monitor {
 		$output.= ($path) ? $this->get_row( __( 'Server Path', 'vendocrat-server-monitor' ), $path ) : '';
 
 		if ( is_array($averages) AND ! empty( $averages[1] ) AND ! empty( $averages[2] ) AND ! empty( $averages[3] ) ) :
-		$output.= $this->get_row( __( 'Server Load', 'vendocrat-server-monitor' ), '<h3>'. $averages[1] .' '. $averages[2] .' '. $averages[3] .'</h3>' );
+		$output.= $this->get_row( __( 'Server Load', 'vendocrat-server-monitor' ), '<strong>'. $averages[1] .' '. $averages[2] .' '. $averages[3] .'</strong>' );
 		endif;
 
 		if ( is_array($uptime) AND ! empty( $uptime[0] ) AND ! empty( $uptime[1] ) ) :
