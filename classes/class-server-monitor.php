@@ -218,8 +218,8 @@ class vendocrat_Server_Monitor {
 	function str_truncate( $string ) {
 		$string = trim($string);
 
-		if ( strlen($string) > $30 ) {
-			$string = substr( $string, 0, $30 ) . '&hellip;';
+		if ( strlen($string) > 30 ) {
+			$string = substr( $string, 0, 30 ) . '&hellip;';
 		}
 
 		return $string;
