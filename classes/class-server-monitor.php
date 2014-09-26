@@ -121,7 +121,7 @@ class vendocrat_Server_Monitor {
 	/**
 	 * Server Monitor
 	 *
-	 * @return void
+	 * @return html $output
 	 *
 	 * @since 2014-09-26
 	 * @version 2014-09-26
@@ -176,7 +176,14 @@ class vendocrat_Server_Monitor {
 		echo $output;
 	}
 
-
+	/**
+	 * Get table row
+	 *
+	 * @return html $output
+	 *
+	 * @since 2014-09-26
+	 * @version 2014-09-26
+	 **************************************************/
 	function get_row( $left = false, $right = false ) {
 		if ( ! $left AND ! $right )
 			return;
@@ -199,19 +206,33 @@ class vendocrat_Server_Monitor {
 
 		return $output;
 	}
-	
 
-	function str_truncate( $string, $length = 30, $append = '&hellip;' ) {
+	/**
+	 * Truncate string and append hellip
+	 *
+	 * @return string $string
+	 *
+	 * @since 2014-09-26
+	 * @version 2014-09-26
+	 **************************************************/
+	function str_truncate( $string ) {
 		$string = trim($string);
 
-		if ( strlen($string) > $length ) {
-			$string = substr( $string, 0, $length ) . $append;
+		if ( strlen($string) > $30 ) {
+			$string = substr( $string, 0, $30 ) . '&hellip;';
 		}
 
 		return $string;
 	}
 
-
+	/**
+	 * Get database size
+	 *
+	 * @return string $total_size
+	 *
+	 * @since 2014-09-26
+	 * @version 2014-09-26
+	 **************************************************/
 	function get_current_db_size(){
 		global $wpdb;
 
@@ -233,7 +254,14 @@ class vendocrat_Server_Monitor {
 		return $this->format_size($total_size);
 	}
 
-
+	/**
+	 * Format given size
+	 *
+	 * @return string $size
+	 *
+	 * @since 2014-09-26
+	 * @version 2014-09-26
+	 **************************************************/
 	function format_size($size) {
 		if( $size / 1073741824 > 1 ) {
 			return number_format_i18n( $size/1073741824, 2 ) .' GB';
