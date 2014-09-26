@@ -1,16 +1,11 @@
-=== Server Monitor ===
-Contributors:      vendocrat, AlexanderPoellmann
-Donate link:       http://vendocr.at/donate/
-Tags:              server, server monitor, monitoring, administration, uptime
-Requires at least: 3.5
-Tested up to:      4.1
-Stable tag:        0.1.0
-License:           GNU General Public License v3.0
-License URI:       http://www.gnu.org/licenses/gpl-3.0.html
+Server Monitor 0.1.0
+====================
 
 Adds a simple widget to your WordPress Dashboard displaying fundamental info about your server and installation.
 
-== Description ==
+![alt tag](https://github.com/vendocrat/vendocrat-server-monitor/blob/master/screenshot-1.png)
+
+##Description
 
 Our Server Monitor plugin adds a simple widget to your WordPress Dashboard displaying fundamental info about your server.
 
@@ -40,17 +35,10 @@ Translations included:
 
 Please contact us via [Twitter](https://twitter.com/vendocrat) or hit us on [GitHub](https://github.com/vendocrat/), if you have a translation you want to contribute!
 
-== Installation ==
+##Changelog
+See "readme.txt".
 
-1. Upload 'vendocrat-server-monitor' to the '/wp-content/plugins/' directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Done! Now visit your Dashboard to see the widget.
+##Author
+**Handcrafted with love by [vendocrat](http://vendocr.at/) in Vienna &amp; Rome.**
 
-== Screenshots ==
-
-1. The Widget
-
-== Changelog ==
-
-= 0.1.0 =
-Initial release.
+Follow us on [Twitter](https://twitter.com/vendocrat), like us on [Facebook](https://www.facebook.com/vendocrat), circle us on [Google+](https://plus.google.com/+vendocrat) or fork us on [GitHub](https://github.com/vendocrat)!
