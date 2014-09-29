@@ -4,7 +4,7 @@ Donate link:       http://vendocr.at/donate/
 Tags:              server, server monitor, monitoring, administration, uptime
 Requires at least: 3.5
 Tested up to:      4.1
-Stable tag:        0.1.0
+Stable tag:        0.1.1
 License:           GNU General Public License v3.0
 License URI:       http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,6 +36,7 @@ Translations included:
 
 *   English
 *   German
+*   Italian
 
 Please contact us via [Twitter](https://twitter.com/vendocrat) or hit us on [GitHub](https://github.com/vendocrat/), if you have a translation you want to contribute!
 
@@ -53,3 +54,6 @@ Please contact us via [Twitter](https://twitter.com/vendocrat) or hit us on [Git
 
 = 0.1.0 =
 Initial release.
+
+= 0.1.1 =
+Fixed l10n bug (text domain not loaded).

@@ -1,4 +1,4 @@
-Server Monitor 0.1.0
+Server Monitor 0.1.1
 ====================
 
 Adds a simple widget to your WordPress Dashboard displaying fundamental info about your server and installation.
@@ -31,6 +31,7 @@ Translations included:
 
 *   English
 *   German
+*   Italian
 
 Please contact us via [Twitter](https://twitter.com/vendocrat) or hit us on [GitHub](https://github.com/vendocrat/), if you have a translation you want to contribute!
 

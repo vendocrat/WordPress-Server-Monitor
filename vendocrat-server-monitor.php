@@ -3,7 +3,7 @@
 /* Plugin Name: vendocrat Server Monitor
  * Plugin URI:  http://vendocr.at/
  * Description: <strong>Adds a Server Monitor widget to your WordPress Dashboard.</strong> Handcrafted with &hearts; by <a href='http://vendocr.at/'>vendocrat</a> in Vienna &amp; Rome.
- * Version:     0.1.0
+ * Version:     0.1.1
  * Author:      vendocrat
  * Author URI:  http://vendocr.at/
  * License:     GNU General Public License v3.0

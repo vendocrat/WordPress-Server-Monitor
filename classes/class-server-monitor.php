@@ -27,9 +27,6 @@ class vendocrat_Server_Monitor {
 	public $plugin_url;
 	public $plugin_dir;
 
-	/* Memory */
-	var $memory = array();
-
 	/**
 	 * Constructor
 	 *
@@ -96,10 +93,10 @@ class vendocrat_Server_Monitor {
 	 * @return void
 	 *
 	 * @since 2014-09-26
-	 * @version 2014-09-26
+	 * @version 2014-09-29
 	 **************************************************/
 	static function load_plugin_textdomain() {
-		load_plugin_textdomain( 'vendocrat-server-monitor', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'vendocrat-server-monitor', false, basename( V_SERVER_MONITOR_DIR ) . '/languages/' );
 	}
 
 	/**
