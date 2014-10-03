@@ -1,4 +1,4 @@
-Server Monitor 0.1.1
+Server Monitor 0.1.2
 ====================
 
 Adds a simple widget to your WordPress Dashboard displaying fundamental info about your server and installation.

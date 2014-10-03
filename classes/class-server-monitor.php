@@ -6,7 +6,7 @@
  * @subpackage Plugins/Server Monitor
  *
  * @since      2014-09-26
- * @version    2014-09-26
+ * @version    2014-10-03
  *
  * @author     Poellmann Alexander Manfred <alex@vendocr.at>
  * @copyright  Copyright 2014 vendocrat. All Rights Reserved.
@@ -27,6 +27,10 @@ class vendocrat_Server_Monitor {
 	public $plugin_url;
 	public $plugin_dir;
 
+	/* Transient */
+	var $transient_key;
+	var $transient_expiry;
+
 	/**
 	 * Constructor
 	 *
@@ -45,6 +49,10 @@ class vendocrat_Server_Monitor {
 		// load functions and classes
 		$this->load_functions();
 		$this->load_classes();
+
+		// set transient
+		$this->transient_key = 'v_server_monitor';
+		$this->transient_expiry = 3600;
 
 		// load text domain
 		add_action( 'plugins_loaded', array( &$this, 'load_plugin_textdomain' ) );
@@ -121,19 +129,15 @@ class vendocrat_Server_Monitor {
 	 * @return html $output
 	 *
 	 * @since 2014-09-26
-	 * @version 2014-09-26
+	 * @version 2014-10-03
 	 **************************************************/
-	function server_monitor() {
-		// get vars
-		$name   = trim(exec('hostname'));
-		$ip     = gethostbyname($name);
-		$path   = ABSPATH;
+	public function server_monitor() {
+		// get transient data
+		$data = $this->get_data();
+		extract($data);
+
+		// don't save uptime in transient
 		$uptime = exec('uptime');
-		$server = $_SERVER['SERVER_SOFTWARE'];
-		$php    = (function_exists('phpversion')) ? phpversion() : __( 'N/A', 'vendocrat-server-monitor' );
-		$mysql  = (function_exists('mysql_get_server_info')) ? mysql_get_server_info() : __( 'N/A', 'vendocrat-server-monitor' );
-		$mysql  = (function_exists('mysql_get_server_info')) ? mysql_get_server_info() : __( 'N/A', 'vendocrat-server-monitor' );
-		$dbsize = $this->get_current_db_size();
 
 		// host name
 		$host = '<span title="'. esc_attr($name) .'">'. $this->str_truncate( $name ) .'</span>';
@@ -171,6 +175,35 @@ class vendocrat_Server_Monitor {
 		$output.= '</table>';
 			
 		echo $output;
+	}
+
+	/**
+	 * Get data
+	 *
+	 * @return array
+	 *
+	 * @since 2014-10-03
+	 * @version 2014-10-03
+	 **************************************************/
+	public function get_data() {
+		$data = array();
+
+		$transient_key    = $this->transient_key;
+		$transient_expiry = $this->transient_expiry;
+
+		if ( ( $data = get_transient($transient_key) ) === false ) {
+			$data['name']   = trim(exec('hostname'));
+			$data['ip']     = gethostbyname($data['name']);
+			$data['path']   = ABSPATH;
+			$data['server'] = $_SERVER['SERVER_SOFTWARE'];
+			$data['php']    = (function_exists('phpversion')) ? phpversion() : __( 'N/A', 'vendocrat-server-monitor' );
+			$data['mysql']  = (function_exists('mysql_get_server_info')) ? mysql_get_server_info() : __( 'N/A', 'vendocrat-server-monitor' );
+			$data['dbsize'] = $this->get_current_db_size();
+
+			set_transient( $transient_key, $data, $transient_expiry );
+		}
+
+		return $data;
 	}
 
 	/**
