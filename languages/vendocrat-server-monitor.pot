@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: vendocrat-server-monitor\n"
-"POT-Creation-Date: 2014-09-26 18:06+0100\n"
-"PO-Revision-Date: 2014-09-26 18:08+0100\n"
+"POT-Creation-Date: 2014-12-20 21:05+0100\n"
+"PO-Revision-Date: 2014-12-20 21:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: vendocrat <hello@vendocr.at>\n"
 "Language: en\n"
@@ -15,48 +15,117 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../classes/class-server-monitor.php:116
+#: ../classes/class-server-monitor.php:124
+#, php-format
+msgid "%s: General"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:124
+#: ../classes/class-server-monitor.php:130
 msgid "Server Monitor"
 msgstr ""
 
+#: ../classes/class-server-monitor.php:130
+#, php-format
+msgid "%s: PHP &amp; Database"
+msgstr ""
+
 #: ../classes/class-server-monitor.php:136
-#: ../classes/class-server-monitor.php:137
-#: ../classes/class-server-monitor.php:138
+msgid "System Status"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:201
+msgid "Contribute"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:202
+msgid "Follow"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:203
+msgid "Donate"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:236
+#: ../classes/class-server-monitor.php:338
+#: ../classes/class-server-monitor.php:339
+#: ../classes/class-server-monitor.php:340
+#: ../classes/class-server-monitor.php:341
+#: ../classes/class-server-monitor.php:375
+#: ../classes/class-server-monitor.php:389
 msgid "N/A"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:157
+#: ../classes/class-server-monitor.php:241
 msgid "Host Name"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:158
+#: ../classes/class-server-monitor.php:242
 msgid "Server IP"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:159
+#: ../classes/class-server-monitor.php:243
 msgid "Server Path"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:162
+#: ../classes/class-server-monitor.php:246
 msgid "Server Load"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:166
+#: ../classes/class-server-monitor.php:250
 msgid "Server up since"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:169
+#: ../classes/class-server-monitor.php:253
 msgid "Server Info"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:170
+#: ../classes/class-server-monitor.php:274
 msgid "PHP Version"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:171
+#: ../classes/class-server-monitor.php:277
+msgid "PHP Time Limit"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:280
 msgid "MySQL Version"
 msgstr ""
 
-#: ../classes/class-server-monitor.php:172
+#: ../classes/class-server-monitor.php:281
 msgid "Database Size"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:302
+msgid "WordPress Version"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:303
+msgid "Multisite?"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:304
+msgid "Active Plugins"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:307
+msgid "Debug Mode"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:308
+msgid "Language"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:309
+msgid "Timezone"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:349
+#: ../classes/class-server-monitor.php:353
+msgid "Yes"
+msgstr ""
+
+#: ../classes/class-server-monitor.php:349
+#: ../classes/class-server-monitor.php:353
+msgid "No"
 msgstr ""

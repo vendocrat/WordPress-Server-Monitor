@@ -6,7 +6,7 @@
  * @subpackage Plugins/Server Monitor
  *
  * @since      2014-09-26
- * @version    2014-10-03
+ * @version    2014-12-17
  *
  * @author     Poellmann Alexander Manfred <alex@vendocr.at>
  * @copyright  Copyright 2014 vendocrat. All Rights Reserved.
@@ -58,7 +58,10 @@ class vendocrat_Server_Monitor {
 		add_action( 'plugins_loaded', array( &$this, 'load_plugin_textdomain' ) );
 
 		// register widgets
-		add_action( 'wp_dashboard_setup', array( &$this, 'add_dashboard_widget' ) );
+		add_action( 'wp_dashboard_setup', array( &$this, 'add_dashboard_widgets' ) );
+
+		// add styles to admin_head
+		add_action( 'admin_head', array( &$this, 'custom_styles' ) );
 	}
 
 	/**
@@ -115,21 +118,101 @@ class vendocrat_Server_Monitor {
 	 * @since 2014-09-26
 	 * @version 2014-09-26
 	 **************************************************/
-	function add_dashboard_widget() {
+	function add_dashboard_widgets() {
 		wp_add_dashboard_widget(
-			'wp_server_load_widget',
-			__( 'Server Monitor', 'vendocrat-server-monitor' ),
+			'wp_widget_server_monitor',
+			sprintf( __( '%s: General', 'vendocrat-server-monitor' ), __( 'Server Monitor', 'vendocrat-server-monitor' ) ),
 			array( &$this, 'server_monitor' )
 		);
+
+		wp_add_dashboard_widget(
+			'wp_widget_server_monitor_php',
+			sprintf( __( '%s: PHP &amp; Database', 'vendocrat-server-monitor' ), __( 'Server Monitor', 'vendocrat-server-monitor' ) ),
+			array( &$this, 'server_monitor_php' )
+		);
+
+		wp_add_dashboard_widget(
+			'wp_widget_server_monitor_wp',
+			__( 'System Status', 'vendocrat-server-monitor' ),
+			array( &$this, 'server_monitor_wp' )
+		);
+	}
+
+	/**
+	 * Custom styles
+	 *
+	 * @return html $output
+	 *
+	 * @since 2014-12-20
+	 * @version 2014-12-20
+	 **************************************************/
+	function custom_styles() {
+		ob_start();
+?>
+<style type="text/css">
+table.server-monitor {
+	width:100%;}
+
+	table.server-monitor > tbody {}
+
+		table.server-monitor > tbody > tr + tr td {
+			border-top:1px solid #ddd;}
+
+		table.server-monitor > tbody > tr td:first-child {
+			width:140px;}
+
+.server-monitor-credit {
+	margin:0 0 0 -5px;
+	padding-left:0;
+	
+	font-size:12px;
+	text-align:right;
+
+	list-style:none;}
+
+	.server-monitor-credit > li {
+		display:inline-block;
+		margin:0;
+		padding-right:5px;
+		padding-left:5px;}
+</style>
+<?php
+		$output = ob_get_clean();
+ 
+		echo $output;
+	}
+
+	/**
+	 * Wrap widget content
+	 *
+	 * @return html $output
+	 *
+	 * @since 2014-12-20
+	 * @version 2014-12-20
+	 **************************************************/
+	public function get_widget( $widget ) {
+		$output = '<table class="server-monitor">';
+		$output.= '<tbody>';
+		$output.= $widget;
+		$output.= '</tbody>';
+		$output.= '</table>';
+
+		$output.= '<ul class="server-monitor-credit">';
+		$output.= '<li><a href="https://github.com/vendocrat/WordPress-Server-Monitor" target="_blank">'. __( 'Contribute', 'vendocrat-server-monitor' ) .'</a></li>';
+		$output.= '<li><a href="https://twitter.com/vendocrat" target="_blank">'. __( 'Follow', 'vendocrat-server-monitor' ) .'</a></li>';
+		$output.= '<li><a href="http://vendocr.at/donate" target="_blank">'. __( 'Donate', 'vendocrat-server-monitor' ) .'</a></li>';
+		$output.= '</ul>';
+
+		echo $output;
 	}
 
 	/**
 	 * Server Monitor
 	 *
-	 * @return html $output
+	 * @return void
 	 *
 	 * @since 2014-09-26
-	 * @version 2014-10-03
+	 * @version 2014-12-20
 	 **************************************************/
 	public function server_monitor() {
 		// get transient data
@@ -150,13 +233,13 @@ class vendocrat_Server_Monitor {
 
 		// up time
 		$uptime = explode( ' up ', $uptime );
-		$uptime = explode( ',', $uptime[1] );
+		$uptime = ( array_key_exists( 1, $uptime ) ) ? explode( ',', $uptime[1] ) : __( 'N/A', 'vendocrat-server-monitor' );
 
 		// prepare output
-		$output = '<table>';
+		$output = '';
 
-		$output.= ($host) ? $this->get_row( __( 'Host Name', 'vendocrat-server-monitor' ), $host ) : '';
-		$output.= ($ip)   ? $this->get_row( __( 'Server IP', 'vendocrat-server-monitor' ), $ip ) : '';
+		$output.= ($host) ? $this->get_row( __( 'Host Name', 'vendocrat-server-monitor' ),   $host ) : '';
+		$output.= ($ip)   ? $this->get_row( __( 'Server IP', 'vendocrat-server-monitor' ),   $ip )   : '';
 		$output.= ($path) ? $this->get_row( __( 'Server Path', 'vendocrat-server-monitor' ), $path ) : '';
 
 		if ( is_array($averages) AND ! empty( $averages[1] ) AND ! empty( $averages[2] ) AND ! empty( $averages[3] ) ) :
@@ -168,13 +251,64 @@ class vendocrat_Server_Monitor {
 		endif;
 
 		$output.= ($server) ? $this->get_row( __( 'Server Info', 'vendocrat-server-monitor' ), $server ) : '';
-		$output.= ($php)    ? $this->get_row( __( 'PHP Version', 'vendocrat-server-monitor' ), $php ) : '';
-		$output.= ($mysql)  ? $this->get_row( __( 'MySQL Version', 'vendocrat-server-monitor' ), $mysql ) : '';
+
+		echo $this->get_widget( $output );
+	}
+
+	/**
+	 * Server Monitor: PHP & Database
+	 *
+	 * @return void
+	 *
+	 * @since 2014-12-20
+	 * @version 2014-12-20
+	 **************************************************/
+	public function server_monitor_php() {
+		// get transient data
+		$data = $this->get_data();
+		extract($data);
+
+		// prepare output
+		$output = '';
+
+		$output.= ($php) ? $this->get_row( __( 'PHP Version', 'vendocrat-server-monitor' ), $php ) : '';
+
+		$output.= ($php_post_max_size) ? $this->get_row( 'PHP Post Max Size', $php_post_max_size ) : '';
+		$output.= ($php_max_execution_time) ? $this->get_row( __( 'PHP Time Limit', 'vendocrat-server-monitor' ), $php_max_execution_time ) : '';
+		$output.= ($php_max_input_vars) ? $this->get_row( 'PHP Max Input Vars', $php_max_input_vars ) : '';
+
+		$output.= ($mysql)  ? $this->get_row( __( 'MySQL Version', 'vendocrat-server-monitor' ), $mysql )  : '';
 		$output.= ($dbsize) ? $this->get_row( __( 'Database Size', 'vendocrat-server-monitor' ), $dbsize ) : '';
 
-		$output.= '</table>';
-			
-		echo $output;
+		echo $this->get_widget( $output );
+	}
+
+	/**
+	 * Server Monitor: WordPress
+	 *
+	 * @return void
+	 *
+	 * @since 2014-12-20
+	 * @version 2014-12-20
+	 **************************************************/
+	public function server_monitor_wp() {
+		// get transient data
+		$data = $this->get_data();
+		extract($data);
+
+		// prepare output
+		$output = '';
+
+		$output.= ($version)    ? $this->get_row( __( 'WordPress Version', 'vendocrat-server-monitor' ), $version ) : '';
+		$output.= ($multi)      ? $this->get_row( __( 'Multisite?', 'vendocrat-server-monitor' ), $multi ) : '';
+		$output.= ($plugins)    ? $this->get_row( __( 'Active Plugins', 'vendocrat-server-monitor' ), $plugins ) : '';
+		$output.= ($memory)     ? $this->get_row( 'Memory Limit', $memory ) : '';
+		$output.= ($max_upload) ? $this->get_row( 'Max Upload Size', $max_upload ) : '';
+		$output.= ($debug)      ? $this->get_row( __( 'Debug Mode', 'vendocrat-server-monitor' ), $debug ) : '';
+		$output.= ($lang)       ? $this->get_row( __( 'Language', 'vendocrat-server-monitor' ), $lang ) : '';
+		$output.= ($timezone)   ? $this->get_row( __( 'Timezone', 'vendocrat-server-monitor' ), $timezone ) : '';
+
+		echo $this->get_widget( $output );
 	}
 
 	/**
@@ -183,7 +317,7 @@ class vendocrat_Server_Monitor {
 	 * @return array
 	 *
 	 * @since 2014-10-03
-	 * @version 2014-10-03
+	 * @version 2014-12-20
 	 **************************************************/
 	public function get_data() {
 		$data = array();
@@ -191,19 +325,68 @@ class vendocrat_Server_Monitor {
 		$transient_key    = $this->transient_key;
 		$transient_expiry = $this->transient_expiry;
 
+		delete_transient( $transient_key );
+
 		if ( ( $data = get_transient($transient_key) ) === false ) {
-			$data['name']   = trim(exec('hostname'));
-			$data['ip']     = gethostbyname($data['name']);
-			$data['path']   = ABSPATH;
-			$data['server'] = $_SERVER['SERVER_SOFTWARE'];
-			$data['php']    = (function_exists('phpversion')) ? phpversion() : __( 'N/A', 'vendocrat-server-monitor' );
-			$data['mysql']  = (function_exists('mysql_get_server_info')) ? mysql_get_server_info() : __( 'N/A', 'vendocrat-server-monitor' );
-			$data['dbsize'] = $this->get_current_db_size();
+			// server
+			$data['name']    = trim(exec('hostname'));
+			$data['ip']      = gethostbyname($data['name']);
+			$data['path']    = ABSPATH;
+			$data['server']  = $_SERVER['SERVER_SOFTWARE'];
+
+			//php
+			$data['php'] = (function_exists('phpversion')) ? phpversion() : __( 'N/A', 'vendocrat-server-monitor' );
+			$data['php_post_max_size']      = (function_exists('ini_get')) ? size_format( $this->format_ini_size( ini_get('post_max_size') ) ) : __( 'N/A', 'vendocrat-server-monitor' );
+			$data['php_max_execution_time'] = (function_exists('ini_get')) ? ini_get('max_execution_time') : __( 'N/A', 'vendocrat-server-monitor' );
+			$data['php_max_input_vars']     = (function_exists('ini_get')) ? ini_get('max_input_vars') : __( 'N/A', 'vendocrat-server-monitor' );
+
+			// database
+			$data['mysql']   = $this->get_db_version();
+			$data['dbsize']  = $this->get_current_db_size();
+
+			// WordPress
+			$data['version']    = get_bloginfo('version');;
+			$data['multi']      = ( is_multisite() ) ? __( 'Yes', 'vendocrat-server-monitor' ) : __( 'No', 'vendocrat-server-monitor' );
+			$data['plugins']    = count( (array) get_option( 'active_plugins' ) );
+			$data['memory']     = $this->get_wp_memory();
+			$data['max_upload'] = size_format( wp_max_upload_size() );
+			$data['debug']      = ( defined('WP_DEBUG') && WP_DEBUG ) ? __( 'Yes', 'vendocrat-server-monitor' ) : __( 'No', 'vendocrat-server-monitor' );
+			$data['lang']       = get_locale();
+			$data['timezone']   = date_default_timezone_get();
 
 			set_transient( $transient_key, $data, $transient_expiry );
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Get wp memory limit
+	 *
+	 * @return String $memory WP Memory Limit
+	 *
+	 * @since 2014-12-20
+	 * @version 2014-12-20
+	 **************************************************/
+	function get_wp_memory() {
+		$memory = $this->format_ini_size( WP_MEMORY_LIMIT );
+		$memory = size_format( $memory );
+
+		return ($memory) ? $memory : __( 'N/A', 'vendocrat-server-monitor' );
+	}
+
+	/**
+	 * Get database version
+	 *
+	 * @return string Database version
+	 *
+	 * @since 2014-12-20
+	 * @version 2014-12-20
+	 **************************************************/
+	function get_db_version() {
+		global $wpdb;
+
+		return ($wpdb->db_version()) ? $wpdb->db_version() : __( 'N/A', 'vendocrat-server-monitor' );
 	}
 
 	/**
@@ -292,7 +475,7 @@ class vendocrat_Server_Monitor {
 	 * @since 2014-09-26
 	 * @version 2014-09-26
 	 **************************************************/
-	function format_size($size) {
+	function format_size( $size ) {
 		if( $size / 1073741824 > 1 ) {
 			return number_format_i18n( $size/1073741824, 2 ) .' GB';
 		} elseif ( $size / 1048576 > 1 ) {
@@ -302,6 +485,34 @@ class vendocrat_Server_Monitor {
 		} else {
 			return number_format_i18n( $size, 0 ) .' bytes';
 		}
+	}
+
+	/**
+	 * Format ini sizes
+	 *
+	 * @return string $size
+	 *
+	 * @since 2014-12-20
+	 * @version 2014-12-20
+	 **************************************************/
+	function format_ini_size( $size ) {
+		$value  = substr( $size, -1 );
+		$return = substr( $size, 0, -1 );
+
+		switch ( strtoupper( $value ) ) {
+			case 'P' :
+				$return*= 1024;
+			case 'T' :
+				$return*= 1024;
+			case 'G' :
+				$return*= 1024;
+			case 'M' :
+				$return*= 1024;
+			case 'K' :
+				$return*= 1024;
+		}
+
+		return $return;
 	}
 
 } // END Class
