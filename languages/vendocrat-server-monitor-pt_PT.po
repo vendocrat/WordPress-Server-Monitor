@@ -1,0 +1,131 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: vendocrat-server-monitor\n"
+"POT-Creation-Date: 2014-12-20 21:05+0100\n"
+"PO-Revision-Date: 2014-12-21 15:15-0000\n"
+"Last-Translator: Luis Martins <luis.martins@multiweb.pt>\n"
+"Language-Team: vendocrat <hello@vendocr.at>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../classes/class-server-monitor.php:124
+#, php-format
+msgid "%s: General"
+msgstr "%s: Geral"
+
+#: ../classes/class-server-monitor.php:124
+#: ../classes/class-server-monitor.php:130
+msgid "Server Monitor"
+msgstr "Monitorização de Servidor"
+
+#: ../classes/class-server-monitor.php:130
+#, php-format
+msgid "%s: PHP &amp; Database"
+msgstr "%s: PHP &amp; Base-de-dados"
+
+#: ../classes/class-server-monitor.php:136
+msgid "System Status"
+msgstr "Estado do Sistema"
+
+#: ../classes/class-server-monitor.php:201
+msgid "Contribute"
+msgstr "Contribuir"
+
+#: ../classes/class-server-monitor.php:202
+msgid "Follow"
+msgstr "Seguir"
+
+#: ../classes/class-server-monitor.php:203
+msgid "Donate"
+msgstr "Doar"
+
+#: ../classes/class-server-monitor.php:236
+#: ../classes/class-server-monitor.php:338
+#: ../classes/class-server-monitor.php:339
+#: ../classes/class-server-monitor.php:340
+#: ../classes/class-server-monitor.php:341
+#: ../classes/class-server-monitor.php:375
+#: ../classes/class-server-monitor.php:389
+msgid "N/A"
+msgstr "N/A"
+
+#: ../classes/class-server-monitor.php:241
+msgid "Host Name"
+msgstr "Servidor Anfitrião"
+
+#: ../classes/class-server-monitor.php:242
+msgid "Server IP"
+msgstr "IP do Servidor"
+
+#: ../classes/class-server-monitor.php:243
+msgid "Server Path"
+msgstr "Caminho para o Servidor"
+
+#: ../classes/class-server-monitor.php:246
+msgid "Server Load"
+msgstr "Carga do Servidor"
+
+#: ../classes/class-server-monitor.php:250
+msgid "Server up since"
+msgstr "Servidor operacional desde "
+
+#: ../classes/class-server-monitor.php:253
+msgid "Server Info"
+msgstr "Informação do Servidor"
+
+#: ../classes/class-server-monitor.php:274
+msgid "PHP Version"
+msgstr "Versão de PHP"
+
+#: ../classes/class-server-monitor.php:277
+msgid "PHP Time Limit"
+msgstr "Tempo limite do PHP"
+
+#: ../classes/class-server-monitor.php:280
+msgid "MySQL Version"
+msgstr "Versão de MySQL"
+
+#: ../classes/class-server-monitor.php:281
+msgid "Database Size"
+msgstr "Tamanho da Base-de-dados"
+
+#: ../classes/class-server-monitor.php:302
+msgid "WordPress Version"
+msgstr "Versão Wordpress"
+
+#: ../classes/class-server-monitor.php:303
+msgid "Multisite?"
+msgstr "Multisite?"
+
+#: ../classes/class-server-monitor.php:304
+msgid "Active Plugins"
+msgstr "Plugins Activos"
+
+#: ../classes/class-server-monitor.php:307
+msgid "Debug Mode"
+msgstr "Modo de Debug"
+
+#: ../classes/class-server-monitor.php:308
+msgid "Language"
+msgstr "Língua"
+
+#: ../classes/class-server-monitor.php:309
+msgid "Timezone"
+msgstr "Fuso Horário"
+
+#: ../classes/class-server-monitor.php:349
+#: ../classes/class-server-monitor.php:353
+msgid "Yes"
+msgstr "Sim"
+
+#: ../classes/class-server-monitor.php:349
+#: ../classes/class-server-monitor.php:353
+msgid "No"
+msgstr "Não"
