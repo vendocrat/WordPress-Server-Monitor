@@ -1,7 +1,7 @@
 === Server Monitor ===
 Contributors:      vendocrat, AlexanderPoellmann
 Donate link:       http://vendocr.at/donate/
-Tags:              server, server monitor, monitoring, administration, uptime
+Tags:              server, server monitor, server monitoring, monitoring, administration, uptime
 Requires at least: 3.5
 Tested up to:      4.1
 Stable tag:        0.2.1

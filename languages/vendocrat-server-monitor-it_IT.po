@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: vendocrat-server-monitor\n"
 "POT-Creation-Date: 2014-12-20 21:05+0100\n"
-"PO-Revision-Date: 2014-12-20 21:05+0100\n"
+"PO-Revision-Date: 2014-12-22 01:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: vendocrat <hello@vendocr.at>\n"
 "Language: de\n"
@@ -36,7 +36,7 @@ msgstr "Stato del sistema"
 
 #: ../classes/class-server-monitor.php:201
 msgid "Contribute"
-msgstr "Coadiuvare"
+msgstr "Contribuisci"
 
 #: ../classes/class-server-monitor.php:202
 msgid "Follow"
@@ -44,7 +44,7 @@ msgstr "Segui"
 
 #: ../classes/class-server-monitor.php:203
 msgid "Donate"
-msgstr "Donare"
+msgstr "Dona"
 
 #: ../classes/class-server-monitor.php:236
 #: ../classes/class-server-monitor.php:338
@@ -58,7 +58,7 @@ msgstr "non disponibile"
 
 #: ../classes/class-server-monitor.php:241
 msgid "Host Name"
-msgstr "Nome Host"
+msgstr "Host name"
 
 #: ../classes/class-server-monitor.php:242
 msgid "Server IP"
@@ -66,15 +66,15 @@ msgstr "Indirizzo IP"
 
 #: ../classes/class-server-monitor.php:243
 msgid "Server Path"
-msgstr "Percorso Server"
+msgstr "Percorso del Server"
 
 #: ../classes/class-server-monitor.php:246
 msgid "Server Load"
-msgstr "Carico Server"
+msgstr "Carico del Server"
 
 #: ../classes/class-server-monitor.php:250
 msgid "Server up since"
-msgstr "Server è in corso da"
+msgstr "Server in funzione da"
 
 #: ../classes/class-server-monitor.php:253
 msgid "Server Info"
