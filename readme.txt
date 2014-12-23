@@ -4,7 +4,7 @@ Donate link:       http://vendocr.at/donate/
 Tags:              server, server monitor, server monitoring, monitoring, administration, uptime
 Requires at least: 3.5
 Tested up to:      4.1
-Stable tag:        0.2.1
+Stable tag:        0.2.2
 License:           GNU General Public License v3.0
 License URI:       http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -59,8 +59,9 @@ Translations included:
 *   German
 *   Italian
 *   Greek (thanks to [Anestis Samourkasidis](https://wordpress.org/support/profile/samourkasidis))
+*   Portuguese (thanks to [Luis Martins](https://github.com/lmartins))
 
-All our plugins are fully localized/translateable by default and include a .pot-file! Please contact us via [Twitter](https://twitter.com/vendocrat) or hit us on [GitHub](https://github.com/vendocrat/WordPress-Server-Monitor), if you have a translation you want to contribute!
+All our plugins are fully localized/translateable by default and include a .pot-file! Please contact us via [Twitter](https://twitter.com/vendocrat) or hit us on [GitHub](https://github.com/vendocrat), if you have a translation you want to contribute!
 
 = We'd love to hear from you! =
 
@@ -94,3 +95,6 @@ Minor fixes/enhancements, added Greek translation (thanks to Anestis Samourkasid
 
 = 0.2.1 =
 Updated readme files and screenshots.
+
+= 0.2.2 =
+Updated Italian translation, added Portuguese translation (thanks to Luis Martins).

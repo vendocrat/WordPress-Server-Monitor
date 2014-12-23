@@ -1,4 +1,4 @@
-Server Monitor 0.2.1
+Server Monitor 0.2.2
 ====================
 
 Adds three simple widgets to your WordPress Dashboard displaying fundamental info about your server and installation.
@@ -17,6 +17,7 @@ We've kept the plugin as simple as possible and therefore made no settings avail
 Oh, and for the speed junkies (like us), all data will be stored and served via a transient. This way the plugin will have no impact on your dashboard loading time!
 
 Widget #1 **General**
+
 *   Host Name
 *   Server IP
 *   Server Path
@@ -25,6 +26,7 @@ Widget #1 **General**
 *   Server Info (Software)
 
 Widget #2 **PHP & Database**
+
 *   PHP Version
 *   PHP Post Max Size
 *   PHP Time Limit
@@ -33,6 +35,7 @@ Widget #2 **PHP & Database**
 *   Database Size
 
 Widget #3 **System Status**
+
 *   WordPress Version
 *   Multisite?
 *   Active Plugins
@@ -54,8 +57,9 @@ Translations included:
 *   German
 *   Italian
 *   Greek (thanks to [Anestis Samourkasidis](https://wordpress.org/support/profile/samourkasidis))
+*   Portuguese (thanks to [Luis Martins](https://github.com/lmartins))
 
-All our plugins are fully localized/translateable by default and include a .pot-file! Please contact us via [Twitter](https://twitter.com/vendocrat) or hit us on [GitHub](https://github.com/vendocrat/WordPress-Server-Monitor), if you have a translation you want to contribute!
+All our plugins are fully localized/translateable by default and include a .pot-file! Please contact us via [Twitter](https://twitter.com/vendocrat) or hit us on [GitHub](https://github.com/vendocrat), if you have a translation you want to contribute!
 
 ##Installation
 See "readme.txt".
